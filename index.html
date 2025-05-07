@@ -6,14 +6,18 @@
 html, body {
   height: 100%;
   margin: 0;
+  padding: 0;
   font-family: 'Poppins', sans-serif;
 }
+
 body {
   display: flex;
   flex-direction: row;
   height: 100vh;
   overflow: hidden;
 }
+
+/* SIDEBAR */
 #sidebar {
   width: 320px;
   display: flex;
@@ -23,8 +27,21 @@ body {
   box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   font-size: 13px;
   border-right: 1px solid #ccc;
-  overflow-y: auto;
+  overflow: hidden;
 }
+
+#contador {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#lista {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
 input[type="text"], select {
   width: 100%;
   padding: 8px;
@@ -34,6 +51,7 @@ input[type="text"], select {
   border-radius: 8px;
   outline: none;
 }
+
 button {
   width: 100%;
   padding: 10px;
@@ -46,40 +64,36 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 button:hover {
   background-color: #218838;
 }
-#contador {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-#lista {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-top: 10px;
-  padding-bottom: 20px;
-}
+
 .school-item {
   padding: 8px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 .school-item:hover {
   background-color: #f1f1f1;
 }
+
 .legend i {
   width: 12px;
   height: 12px;
   display: inline-block;
   margin-right: 5px;
 }
+
+/* MAPA */
 #map {
   flex-grow: 1;
   height: 100%;
 }
 
-/* 📱 ADAPTACIÓN RESPONSIVE PARA MÓVIL */
+/* RESPONSIVE PARA MÓVIL */
 @media (max-width: 768px) {
   body {
     flex-direction: column;
@@ -88,18 +102,24 @@ button:hover {
   #sidebar {
     width: 100%;
     height: auto;
-    max-height: 50vh;
+    max-height: 40vh;
+    overflow-y: auto;
     border-right: none;
     border-bottom: 1px solid #ccc;
+  }
+
+  #lista {
+    max-height: 150px;
     overflow-y: auto;
   }
 
   #map {
     flex-grow: 1;
-    height: 50vh;
+    height: 60vh;
   }
 }
 </style>
+
 
 
 
