@@ -11,6 +11,7 @@ html, body {
 }
 body {
   display: flex;
+  flex-direction: row;
 }
 #sidebar {
   width: 320px;
@@ -72,7 +73,26 @@ button:hover {
   flex: 1;
   height: 100vh;
 }
+
+/* 🔧 ADAPTACIÓN A MÓVILES */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  #map {
+    height: calc(100vh - 400px); /* Ajusta según el contenido del sidebar */
+  }
+}
 </style>
+
 
 
 
