@@ -136,6 +136,21 @@ button:hover {
 
 </head>
 <body>
+<button id="toggleSidebar" style="
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+">Ocultar barra</button>
+
+  
 <div id="sidebar">
   <div class="search-box">
     <label for="busqueda"><strong>Buscar colegio:</strong></label><br>
@@ -322,6 +337,17 @@ locateControl.onAdd = function (map) {
   return div;
 };
 locateControl.addTo(map);
+  const toggleButton = document.getElementById('toggleSidebar');
+const sidebar = document.getElementById('sidebar');
+let sidebarVisible = true;
+
+toggleButton.addEventListener('click', () => {
+  sidebarVisible = !sidebarVisible;
+  sidebar.style.display = sidebarVisible ? 'flex' : 'none';
+  toggleButton.textContent = sidebarVisible ? 'Ocultar barra' : 'Mostrar barra';
+  map.invalidateSize(); // Recalcula el mapa para que se ajuste al nuevo tamaño
+});
+
 </script>
 
 </script>
