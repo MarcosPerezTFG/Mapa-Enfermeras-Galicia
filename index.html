@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,6 +12,7 @@ html, body {
 body {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 /* SIDEBAR */
@@ -25,6 +25,12 @@ body {
   box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   font-size: 13px;
   border-right: 1px solid #ccc;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar-hidden {
+  transform: translateX(-100%);
 }
 
 #contador {
@@ -95,8 +101,21 @@ button:hover {
 /* MAPA */
 #map {
   width: 100%;
+  flex-grow: 1;
 }
 
+/* Botón de toggle sidebar */
+#sidebar-toggle {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 500;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: none;
 }
 
 /* RESPONSIVE PARA MÓVIL */
@@ -106,26 +125,29 @@ button:hover {
   }
 
   #sidebar {
+    position: absolute;
+    height: 60dvh;
     width: 100%;
-    max-height: 40dvh;
+    max-height: 60dvh;
     overflow-y: auto;
     border-right: none;
     border-bottom: 1px solid #ccc;
   }
 
   #map {
-    height: 60dvh;
+    height: 100dvh;
+  }
+
+  #sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-hidden + #map {
+    height: 100dvh;
   }
 }
 
 </style>
-
-
-
-
-
-
-
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -133,24 +155,9 @@ button:hover {
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-
 </head>
 <body>
-<button id="toggleSidebar" style="
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-">Ocultar barra</button>
-
-  
+<button id="sidebar-toggle">☰</button>
 <div id="sidebar">
   <div class="search-box">
     <label for="busqueda"><strong>Buscar colegio:</strong></label><br>
@@ -293,6 +300,18 @@ legend.onAdd = function (map) {
   return div;
 };
 legend.addTo(map);
+
+// Toggle sidebar
+document.getElementById('sidebar-toggle').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('sidebar').classList.toggle('sidebar-hidden');
+  map.invalidateSize();
+});
+
+// Verificar si estamos en móvil y ocultar sidebar inicialmente si es necesario
+if (window.matchMedia("(max-width: 768px)").matches) {
+  document.getElementById('sidebar').classList.add('sidebar-hidden');
+}
 </script>
 
 <script>
@@ -337,19 +356,6 @@ locateControl.onAdd = function (map) {
   return div;
 };
 locateControl.addTo(map);
-  const toggleButton = document.getElementById('toggleSidebar');
-const sidebar = document.getElementById('sidebar');
-let sidebarVisible = true;
-
-toggleButton.addEventListener('click', () => {
-  sidebarVisible = !sidebarVisible;
-  sidebar.style.display = sidebarVisible ? 'flex' : 'none';
-  toggleButton.textContent = sidebarVisible ? 'Ocultar barra' : 'Mostrar barra';
-  map.invalidateSize(); // Recalcula el mapa para que se ajuste al nuevo tamaño
-});
-
-</script>
-
 </script>
 
 </body>
