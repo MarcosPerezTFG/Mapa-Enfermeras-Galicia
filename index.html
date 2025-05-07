@@ -336,6 +336,22 @@ locateControl.onAdd = function (map) {
 };
 locateControl.addTo(map);
 </script>
+<script>
+function ajustarAlturaMapaMovil() {
+  if (window.innerWidth <= 768) {
+    const alturaDeseada = Math.round(window.innerHeight * 0.6);
+    const mapa = document.getElementById('map');
+    if (mapa) {
+      mapa.style.height = alturaDeseada + 'px';
+      if (typeof map !== 'undefined') {
+        map.invalidateSize();
+      }
+    }
+  }
+}
+window.addEventListener('resize', ajustarAlturaMapaMovil);
+window.addEventListener('load', ajustarAlturaMapaMovil);
+</script>
 
 </body>
 </html>
