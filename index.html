@@ -94,8 +94,9 @@ button:hover {
 
 /* MAPA */
 #map {
-  flex-grow: 1;
-  height: 100%;
+  width: 100%;
+}
+
 }
 
 /* RESPONSIVE PARA MÓVIL */
@@ -338,19 +339,21 @@ locateControl.addTo(map);
 </script>
 <script>
 function ajustarAlturaMapaMovil() {
+  const mapDiv = document.getElementById('map');
   if (window.innerWidth <= 768) {
-    const alturaDeseada = Math.round(window.innerHeight * 0.6);
-    const mapa = document.getElementById('map');
-    if (mapa) {
-      mapa.style.height = alturaDeseada + 'px';
-      if (typeof map !== 'undefined') {
-        map.invalidateSize();
-      }
-    }
+    const altura = window.innerHeight - document.getElementById('sidebar').offsetHeight;
+    mapDiv.style.height = altura + 'px';
+  } else {
+    mapDiv.style.height = '100vh';
+  }
+  if (typeof map !== 'undefined') {
+    map.invalidateSize();
   }
 }
-window.addEventListener('resize', ajustarAlturaMapaMovil);
 window.addEventListener('load', ajustarAlturaMapaMovil);
+window.addEventListener('resize', ajustarAlturaMapaMovil);
+</script>
+
 </script>
 
 </body>
