@@ -4,17 +4,15 @@
 <head>
 <style>
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  overflow: auto;
+  height: 100%;
 }
 
 body {
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 /* SIDEBAR */
@@ -27,7 +25,6 @@ body {
   box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   font-size: 13px;
   border-right: 1px solid #ccc;
-  overflow: hidden;
 }
 
 #contador {
@@ -105,11 +102,11 @@ button:hover {
 @media (max-width: 768px) {
   body {
     flex-direction: column;
+    height: auto;
   }
 
   #sidebar {
     width: 100%;
-    height: auto;
     max-height: 40vh;
     overflow-y: auto;
     border-right: none;
@@ -122,10 +119,11 @@ button:hover {
   }
 
   #map {
-    height: calc(100vh - 40vh);
+    height: 60vh !important;
   }
 }
 </style>
+
 
 
 
@@ -252,6 +250,16 @@ centros.forEach(c => {
 map.addLayer(markers);
 actualizarMapa();
 setTimeout(() => map.invalidateSize(), 200);
+  
+function ajustarAlturaMapaMovil() {
+  if (window.innerWidth <= 768) {
+    document.getElementById('map').style.height = `${window.innerHeight * 0.6}px`;
+    map.invalidateSize();
+  }
+}
+window.addEventListener('resize', ajustarAlturaMapaMovil);
+window.addEventListener('load', ajustarAlturaMapaMovil);
+
 
 document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => cb.addEventListener('change', actualizarMapa));
 document.getElementById('busqueda').addEventListener('input', actualizarMapa);
