@@ -103,24 +103,21 @@ button:hover {
 @media (max-width: 768px) {
   body {
     flex-direction: column;
-    height: auto;
   }
 
   #sidebar {
     width: 100%;
-    max-height: 40vh;
+    max-height: 40dvh;
     overflow-y: auto;
     border-right: none;
     border-bottom: 1px solid #ccc;
   }
 
-  #lista {
-    max-height: 150px;
-    overflow-y: auto;
-  }
-
   #map {
-    height: 60vh !important;
+    height: 60dvh;
+  }
+}
+
   }
 }
 </style>
@@ -252,15 +249,6 @@ map.addLayer(markers);
 actualizarMapa();
 setTimeout(() => map.invalidateSize(), 200);
   
-function ajustarAlturaMapaMovil() {
-  if (window.innerWidth <= 768) {
-    document.getElementById('map').style.height = `${window.innerHeight * 0.6}px`;
-    map.invalidateSize();
-  }
-}
-window.addEventListener('resize', ajustarAlturaMapaMovil);
-window.addEventListener('load', ajustarAlturaMapaMovil);
-
 
 document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => cb.addEventListener('change', actualizarMapa));
 document.getElementById('busqueda').addEventListener('input', actualizarMapa);
@@ -336,22 +324,6 @@ locateControl.onAdd = function (map) {
   return div;
 };
 locateControl.addTo(map);
-</script>
-<script>
-function ajustarAlturaMapaMovil() {
-  const mapDiv = document.getElementById('map');
-  if (window.innerWidth <= 768) {
-    const altura = window.innerHeight - document.getElementById('sidebar').offsetHeight;
-    mapDiv.style.height = altura + 'px';
-  } else {
-    mapDiv.style.height = '100vh';
-  }
-  if (typeof map !== 'undefined') {
-    map.invalidateSize();
-  }
-}
-window.addEventListener('load', ajustarAlturaMapaMovil);
-window.addEventListener('resize', ajustarAlturaMapaMovil);
 </script>
 
 </script>
