@@ -6,16 +6,16 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
 }
 body {
   display: flex;
   flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
 }
 #sidebar {
   width: 320px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -23,7 +23,7 @@ body {
   box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   font-size: 13px;
   border-right: 1px solid #ccc;
-  overflow: hidden;
+  overflow-y: auto;
 }
 input[type="text"], select {
   width: 100%;
@@ -68,13 +68,18 @@ button:hover {
 .school-item:hover {
   background-color: #f1f1f1;
 }
-.legend i { width: 12px; height: 12px; display: inline-block; margin-right: 5px; }
+.legend i {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin-right: 5px;
+}
 #map {
-  flex: 1;
-  height: 100vh;
+  flex-grow: 1;
+  height: 100%;
 }
 
-/* 🔧 ADAPTACIÓN A MÓVILES */
+/* 📱 ADAPTACIÓN RESPONSIVE PARA MÓVIL */
 @media (max-width: 768px) {
   body {
     flex-direction: column;
@@ -83,12 +88,15 @@ button:hover {
   #sidebar {
     width: 100%;
     height: auto;
+    max-height: 50vh;
     border-right: none;
     border-bottom: 1px solid #ccc;
+    overflow-y: auto;
   }
 
   #map {
-    height: calc(100vh - 400px); /* Ajusta según el contenido del sidebar */
+    flex-grow: 1;
+    height: 50vh;
   }
 }
 </style>
