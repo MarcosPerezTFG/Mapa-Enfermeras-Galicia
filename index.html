@@ -123,27 +123,22 @@ button:hover {
 
 /* RESPONSIVE PARA MÓVIL */
 @media (max-width: 768px) {
-
   body {
     flex-direction: column;
   }
 
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh; /* ocupa toda la altura del lado izquierdo */
-  width: 85%;
-  max-width: 320px;
-  background-color: white; /* por si acaso */
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  transform: translateX(0); /* visible por defecto */
-  transition: transform 0.3s ease;
-}
+  #sidebar {
+    position: fixed;
+    height: 60vh;
+    width: 85%;
+    max-width: 320px;
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  }
 
-.sidebar-hidden {
-  transform: translateX(-100%); /* fuera de pantalla, oculta */
-}
   #map {
     height: 100vh;
     width: 100%;
