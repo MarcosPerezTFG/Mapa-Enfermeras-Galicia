@@ -79,6 +79,7 @@ button:hover {
   body {
     flex-direction: column;
     height: 100vh;
+    margin: 0;
   }
 
   #sidebar {
@@ -88,7 +89,13 @@ button:hover {
     overflow-x: hidden;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
-    display: block; /* IMPORTANTE: no usar flex aquí en móvil */
+    display: block;
+    padding: 10px 15px 10px 15px; /* menos padding abajo */
+  }
+
+  #lista {
+    max-height: none;
+    overflow-y: visible;
   }
 
   #map {
@@ -99,6 +106,11 @@ button:hover {
   input[type="text"], select, button {
     width: 100%;
     box-sizing: border-box;
+    margin: 5px 0;
+  }
+
+  .search-box {
+    margin-bottom: 10px;
   }
 }
 
