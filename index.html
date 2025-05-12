@@ -21,8 +21,8 @@ body {
   box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   font-size: 13px;
   border-right: 1px solid #ccc;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
@@ -75,7 +75,7 @@ button:hover {
   flex: 1;
   height: 100vh;
 }
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   body {
     flex-direction: column;
   }
@@ -83,23 +83,32 @@ button:hover {
   #sidebar {
     width: 100%;
     height: auto;
-    max-height: none;
+    max-height: 40vh;
     box-shadow: none;
     border-right: none;
     border-bottom: 1px solid #ccc;
-    overflow: visible;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   #lista {
-    max-height: 200px; /* Ajusta si quieres más/menos espacio para la lista */
+    flex-grow: 1;
+    max-height: 20vh;
     overflow-y: auto;
   }
 
   #map {
     flex: none;
-    height: calc(100vh - 250px); /* Ajusta si el sidebar es más alto */
+    height: 60vh;
+    width: 100%;
+  }
+
+  input[type="text"], select, button {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
+
 
 </style>
 
