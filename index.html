@@ -538,30 +538,7 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 </script>
-
-<script>
-const iconos = {
-  "Público": new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/2942/2942131.png', iconSize: [30, 30], iconAnchor: [15, 30] }),
-  "Concertado": new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/2942/2942143.png', iconSize: [30, 30], iconAnchor: [15, 30] }),
-  "Privado": new L.Icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/2942/2942147.png', iconSize: [30, 30], iconAnchor: [15, 30] })
-};
-
-function crearMarcador(c) {
-  const marker = L.marker(c.coords, {
-    icon: iconos[c.tipo] || new L.Icon.Default()
-  }).bindPopup("<strong>" + c.nombre + "</strong><br>" + c.direccion + "<br>" + c.ciudad + "<br>Enfermeras: " + c.enfermeras + "<br>Tipo: " + c.tipo);
-  marker.bindTooltip(c.nombre);
-  marker.tipo = c.tipo;
-  marker.nombre = c.nombre;
-  marker.ciudad = c.ciudad;
-  markerRefs.push({ marker: marker, ...c });
-  return marker;
-  
-</script>
-
 }
-
-
 </script>
 
 </body>
