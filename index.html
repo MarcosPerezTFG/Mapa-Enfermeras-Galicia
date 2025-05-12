@@ -301,6 +301,14 @@ function crearMarcador(c) {
   marker.ciudad = c.ciudad;
   markerRefs.push({ marker: marker, ...c });
   return marker;
+
+  <script>
+window.addEventListener('resize', () => {
+  const mapElement = document.getElementById('map');
+  mapElement.style.height = `${window.innerHeight * 0.55}px`;
+});
+</script>
+
 }
 
 
