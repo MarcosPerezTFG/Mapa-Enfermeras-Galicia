@@ -3,58 +3,26 @@
 <head>
 <style>
 html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
   height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
-
 body {
   display: flex;
-  flex-direction: row;
-  position: relative;
 }
-
-/* SIDEBAR */
 #sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  width: 320px;
   height: 100vh;
-  width: 85%;
-  max-width: 320px;
-  background-color: white;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  transform: translateX(-100%); /* INICIALMENTE OCULTA */
-  transition: transform 0.3s ease;
-  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  font-size: 13px;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
 }
-
-#sidebar.active {
-  transform: translateX(0); /* MOSTRAR */
-}
-
-
-#contador {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#lista {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-top: 10px;
-  padding-bottom: 20px;
-}
-
-#lista::-webkit-scrollbar {
-  width: 10px;
-}
-#lista::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-
 input[type="text"], select {
   width: 100%;
   padding: 8px;
@@ -64,7 +32,6 @@ input[type="text"], select {
   border-radius: 8px;
   outline: none;
 }
-
 button {
   width: 100%;
   padding: 10px;
@@ -77,84 +44,38 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 button:hover {
   background-color: #218838;
 }
-
+#contador {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#lista {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
 .school-item {
   padding: 8px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .school-item:hover {
   background-color: #f1f1f1;
 }
-
-.legend i {
-  width: 12px;
-  height: 12px;
-  display: inline-block;
-  margin-right: 5px;
-}
-
-/* MAPA */
+.legend i { width: 12px; height: 12px; display: inline-block; margin-right: 5px; }
 #map {
   flex: 1;
   height: 100vh;
 }
-
-/* Botón de toggle sidebar */
-#sidebar-toggle {
-  position: fixed;
-  left: 10px;
-  top: 10px;
-  z-index: 1001;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px 12px;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* RESPONSIVE PARA MÓVIL */
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-
-  #sidebar {
-    position: fixed;
-    height: 60vh;
-    width: 85%;
-    max-width: 320px;
-    top: 0;
-    left: 0;
-    border-right: none;
-    border-bottom: 1px solid #ccc;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-  }
-
-  #map {
-    height: 100vh;
-    width: 100%;
-    margin-top: 0;
-  }
-
-  #sidebar-toggle {
-    display: block;
-  }
-
-  .sidebar-hidden + #map {
-    width: 100%;
-  }
-}
-
 </style>
+
+
+
+
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -162,9 +83,9 @@ button:hover {
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
 </head>
 <body>
-<button id="sidebar-toggle">☰</button>
 <div id="sidebar">
   <div class="search-box">
     <label for="busqueda"><strong>Buscar colegio:</strong></label><br>
@@ -275,7 +196,6 @@ centros.forEach(c => {
 map.addLayer(markers);
 actualizarMapa();
 setTimeout(() => map.invalidateSize(), 200);
-  
 
 document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => cb.addEventListener('change', actualizarMapa));
 document.getElementById('busqueda').addEventListener('input', actualizarMapa);
@@ -307,18 +227,6 @@ legend.onAdd = function (map) {
   return div;
 };
 legend.addTo(map);
-
-// Toggle sidebar
-document.getElementById('sidebar-toggle').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('sidebar').classList.toggle('sidebar-hidden');
-  map.invalidateSize();
-});
-
-// Verificar si estamos en móvil y ocultar sidebar inicialmente si es necesario
-if (window.matchMedia("(max-width: 768px)").matches) {
-  document.getElementById('sidebar').classList.add('sidebar-hidden');
-}
 </script>
 
 <script>
