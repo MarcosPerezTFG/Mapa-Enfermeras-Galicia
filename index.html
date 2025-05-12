@@ -88,15 +88,11 @@ button:hover {
     overflow-x: hidden;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
-  }
-
-  #lista {
-    max-height: none;
-    overflow-y: visible;
+    display: block; /* IMPORTANTE: no usar flex aquí en móvil */
   }
 
   #map {
-    height: calc(100vh - 35vh);
+    height: 65vh;
     width: 100%;
   }
 
@@ -105,6 +101,7 @@ button:hover {
     box-sizing: border-box;
   }
 }
+
 
 
 
