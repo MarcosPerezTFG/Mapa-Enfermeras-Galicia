@@ -17,24 +17,23 @@ body {
 
 /* SIDEBAR */
 #sidebar {
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  padding: 20px;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-  font-size: 13px;
-  border-right: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 85%;
+  max-width: 320px;
+  background-color: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%); /* INICIALMENTE OCULTA */
   transition: transform 0.3s ease;
   z-index: 1000;
-  height: 100vh;
-  box-sizing: border-box;
-  overflow-y: auto;
 }
 
-.sidebar-hidden {
-  transform: translateX(-100%);
+#sidebar.active {
+  transform: translateX(0); /* MOSTRAR */
 }
+
 
 #contador {
   margin-top: 10px;
