@@ -202,8 +202,250 @@ const colores = { "Público": "blue", "Concertado": "green", "Privado": "red" };
 const markers = L.markerClusterGroup();
 const markerRefs = [];
 let centrosFiltrados = [];
-const centros = [{"nombre": "CEE Terra de Ferrol", "ciudad": "Ferrol", "enfermeras": "2", "tipo": "Público", "direccion": "Irmandade de Doadores de Sangue de Ferrol, s/n, 15405 Ferrol, A Coruña", "coords": [43.51098893494072, -8.213860089614073]}, {"nombre": "CEE A Barcia", "ciudad": "Santiago de Compostela", "enfermeras": "2", "tipo": "Público", "direccion": "Lugar A Barcia, 79. Loc Laraño, 15896 Santiago de Compostela, La Coruña, A Coruña", "coords": [42.87632185707329, -8.587816349134577]}, {"nombre": "IES O Mosteirón", "ciudad": "Sada", "enfermeras": "¿1?", "tipo": "Público", "direccion": "Esperela, s/n", "coords": [43.349381547734566, -8.29191255588105]}, {"nombre": "CEE O Pedroso", "ciudad": "Santiago de Compostela", "enfermeras": "1", "tipo": "Público", "direccion": "Rúa de San Paio do Monte, 6, 15705 Santiago de Compostela, A Coruña", "coords": [42.884776049837036, -8.556771460836028]}, {"nombre": "CEE Manuel López Navalón", "ciudad": "Santiago de Compostela", "enfermeras": "1", "tipo": "Público", "direccion": "Lugar Casas do Rego, 20, 15705 Santiago de Compostela", "coords": [42.88514776783916, -8.556764806794042]}, {"nombre": "CEE Infanta Elena", "ciudad": "Monforte de Lemos", "enfermeras": "1", "tipo": "Público", "direccion": "Camiño Real de Seoane, 61, 27400 Monforte de Lemos, Lugo", "coords": [42.53266482500016, -7.531893593329003]}, {"nombre": "CEE Santa María", "ciudad": "Lugo", "enfermeras": "1", "tipo": "Público", "direccion": "Rúa da Luz, 1, 27002 Lugo", "coords": [42.995732741359525, -7.546449686614624]}, {"nombre": "CEE Miño", "ciudad": "Ourense", "enfermeras": "1", "tipo": "Público", "direccion": "Rúa Juan Fernandez de Gres, 13, 32960 Ourense", "coords": [42.36480822688102, -7.846050749152741]}, {"nombre": "CEE Panxón", "ciudad": "Nigran", "enfermeras": "1", "tipo": "Público", "direccion": "Camiño dos Lagos, 5-1, 36340 Nigrán, Pontevedra", "coords": [42.14668708668587, -8.823018624001337]}, {"nombre": "CEE Saladino Cortizo", "ciudad": "Vigo", "enfermeras": "1", "tipo": "Público", "direccion": "Rúa do Carballal, 60, Cabral, 36318 Vigo, Pontevedra", "coords": [42.23875536990218, -8.638599950968834]}, {"nombre": "CEE Vilagarcía de Arousa", "ciudad": "Vilagarcía de Arousa", "enfermeras": "1", "tipo": "Público", "direccion": "Lugar Jardín Doutor Fleming, 0 S N, 36600 Vilagarcía de Arousa, Pontevedra", "coords": [42.595566147039655, -8.761015235637723]}, {"nombre": "CEE María Mariño", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Público", "direccion": "Xubias de Arriba, 16, 15006 A Coruña", "coords": [43.34394750878515, -8.384015251004149]}, {"nombre": "Colegio Calasanz PP. Escolapios", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Concertado", "direccion": "PP. Escolapios, Estrada dos Fortes, 10, 15011 A Coruña", "coords": [43.37250118209926, -8.430026350966816]}, {"nombre": "Colegio Internacional Eirís", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Privado", "direccion": "Rúa Castaño de Eirís, 1, 15009 A Coruña", "coords": [43.3408514261878, -8.394791044286741]}, {"nombre": "Colegio Obradoiro International School", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Privado", "direccion": "Rúa Obradoiro, 49, 15190 A Coruña", "coords": [43.31930031986821, -8.425926503105899]}, {"nombre": "Colegio Manuel Peleteiro", "ciudad": "Santiago de Compostela", "enfermeras": "1", "tipo": "Privado", "direccion": "Lugar do Monte Redondo, s/n, 15702 Santiago de Compostela, A Coruña", "coords": [42.85165958771674, -8.535695635621066]}, {"nombre": "Colegio Plurilingüe Santa María del Mar", "ciudad": "A Coruña", "enfermeras": "3", "tipo": "Concertado", "direccion": "Av. Pasaxe, 69, 15006 A Coruña", "coords": [43.335524937759025, -8.388862866313074]}, {"nombre": "Colegio Liceo La Paz", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Concertado", "direccion": "Rúa Sebastián Martínez Risco, 12, 15009 A Coruña", "coords": [43.34148585385031, -8.402384498221686]}, {"nombre": "British International School Coruña", "ciudad": "A Coruña", "enfermeras": "1", "tipo": "Privado", "direccion": "Rua Roma, 1, 15008 A Coruña", "coords": [43.32387489930685, -8.406614718242725]}, {"nombre": "Colegio Internacional SEK-Atlántico", "ciudad": "Pontevedra", "enfermeras": "1", "tipo": "Privado", "direccion": "C/ Illa de Arousa, Urb. A Caeira, 4, 36005 Boa Vista, Pontevedra", "coords": [42.44020365117865, -8.65676851273678]}, {"nombre": "Colegio LAR", "ciudad": "Vigo", "enfermeras": "1", "tipo": "Privado", "direccion": "Camiño Eido de San Antonio, 3, 36416 Vigo, Pontevedra", "coords": [42.20684466129643, -8.659855433316634]}, {"nombre": "Colexio Apóstol Santiago", "ciudad": "Vigo", "enfermeras": "1", "tipo": "Concertado", "direccion": "Rúa de Sanjurjo Badía, 79, Teis, 36207 Vigo, Pontevedra", "coords": [42.24482885318555, -8.703886015507305]}];
-
+const centros = [
+  {
+    "nombre": "CEE Terra de Ferrol",
+    "ciudad": "Ferrol",
+    "enfermeras": "2",
+    "tipo": "Público",
+    "direccion": "Irmandade de Doadores de Sangue de Ferrol, s/n, 15405 Ferrol, A Coruña",
+    "coords": [
+      43.51098893494072,
+      -8.213860089614073
+    ]
+  },
+  {
+    "nombre": "CEE A Barcia",
+    "ciudad": "Santiago de Compostela",
+    "enfermeras": "2",
+    "tipo": "Público",
+    "direccion": "Lugar A Barcia, 79. Loc Laraño, 15896 Santiago de Compostela, La Coruña, A Coruña",
+    "coords": [
+      42.87632185707329,
+      -8.587816349134577
+    ]
+  },
+  {
+    "nombre": "IES O Mosteirón",
+    "ciudad": "Sada",
+    "enfermeras": "¿1?",
+    "tipo": "Público",
+    "direccion": "Esperela, s/n",
+    "coords": [
+      43.349381547734566,
+      -8.29191255588105
+    ]
+  },
+  {
+    "nombre": "CEE O Pedroso",
+    "ciudad": "Santiago de Compostela",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Rúa de San Paio do Monte, 6, 15705 Santiago de Compostela, A Coruña",
+    "coords": [
+      42.884776049837036,
+      -8.556771460836028
+    ]
+  },
+  {
+    "nombre": "CEE Manuel López Navalón",
+    "ciudad": "Santiago de Compostela",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Lugar Casas do Rego, 20, 15705 Santiago de Compostela",
+    "coords": [
+      42.88514776783916,
+      -8.556764806794042
+    ]
+  },
+  {
+    "nombre": "CEE Infanta Elena",
+    "ciudad": "Monforte de Lemos",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Camiño Real de Seoane, 61, 27400 Monforte de Lemos, Lugo",
+    "coords": [
+      42.53266482500016,
+      -7.531893593329003
+    ]
+  },
+  {
+    "nombre": "CEE Santa María",
+    "ciudad": "Lugo",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Rúa da Luz, 1, 27002 Lugo",
+    "coords": [
+      42.995732741359525,
+      -7.546449686614624
+    ]
+  },
+  {
+    "nombre": "CEE Miño",
+    "ciudad": "Ourense",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Rúa Juan Fernandez de Gres, 13, 32960 Ourense",
+    "coords": [
+      42.36480822688102,
+      -7.846050749152741
+    ]
+  },
+  {
+    "nombre": "CEE Panxón",
+    "ciudad": "Nigran",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Camiño dos Lagos, 5-1, 36340 Nigrán, Pontevedra",
+    "coords": [
+      42.14668708668587,
+      -8.823018624001337
+    ]
+  },
+  {
+    "nombre": "CEE Saladino Cortizo",
+    "ciudad": "Vigo",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Rúa do Carballal, 60, Cabral, 36318 Vigo, Pontevedra",
+    "coords": [
+      42.23875536990218,
+      -8.638599950968834
+    ]
+  },
+  {
+    "nombre": "CEE Vilagarcía de Arousa",
+    "ciudad": "Vilagarcía de Arousa",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Lugar Jardín Doutor Fleming, 0 S N, 36600 Vilagarcía de Arousa, Pontevedra",
+    "coords": [
+      42.595566147039655,
+      -8.761015235637723
+    ]
+  },
+  {
+    "nombre": "CEE María Mariño",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Público",
+    "direccion": "Xubias de Arriba, 16, 15006 A Coruña",
+    "coords": [
+      43.34394750878515,
+      -8.384015251004149
+    ]
+  },
+  {
+    "nombre": "Colegio Calasanz PP. Escolapios",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Concertado",
+    "direccion": "PP. Escolapios, Estrada dos Fortes, 10, 15011 A Coruña",
+    "coords": [
+      43.37250118209926,
+      -8.430026350966816
+    ]
+  },
+  {
+    "nombre": "Colegio Internacional Eirís",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "Rúa Castaño de Eirís, 1, 15009 A Coruña",
+    "coords": [
+      43.3408514261878,
+      -8.394791044286741
+    ]
+  },
+  {
+    "nombre": "Colegio Obradoiro International School",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "Rúa Obradoiro, 49, 15190 A Coruña",
+    "coords": [
+      43.31930031986821,
+      -8.425926503105899
+    ]
+  },
+  {
+    "nombre": "Colegio Manuel Peleteiro",
+    "ciudad": "Santiago de Compostela",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "Lugar do Monte Redondo, s/n, 15702 Santiago de Compostela, A Coruña",
+    "coords": [
+      42.85165958771674,
+      -8.535695635621066
+    ]
+  },
+  {
+    "nombre": "Colegio Plurilingüe Santa María del Mar",
+    "ciudad": "A Coruña",
+    "enfermeras": "3",
+    "tipo": "Concertado",
+    "direccion": "Av. Pasaxe, 69, 15006 A Coruña",
+    "coords": [
+      43.335524937759025,
+      -8.388862866313074
+    ]
+  },
+  {
+    "nombre": "Colegio Liceo La Paz",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Concertado",
+    "direccion": "Rúa Sebastián Martínez Risco, 12, 15009 A Coruña",
+    "coords": [
+      43.34148585385031,
+      -8.402384498221686
+    ]
+  },
+  {
+    "nombre": "British International School Coruña",
+    "ciudad": "A Coruña",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "Rua Roma, 1, 15008 A Coruña",
+    "coords": [
+      43.32387489930685,
+      -8.406614718242725
+    ]
+  },
+  {
+    "nombre": "Colegio Internacional SEK-Atlántico",
+    "ciudad": "Pontevedra",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "C/ Illa de Arousa, Urb. A Caeira, 4, 36005 Boa Vista, Pontevedra",
+    "coords": [
+      42.44020365117865,
+      -8.65676851273678
+    ]
+  },
+  {
+    "nombre": "Colegio LAR",
+    "ciudad": "Vigo",
+    "enfermeras": "1",
+    "tipo": "Privado",
+    "direccion": "Camiño Eido de San Antonio, 3, 36416 Vigo, Pontevedra",
+    "coords": [
+      42.20684466129643,
+      -8.659855433316634
+    ]
+  },
+  {
+    "nombre": "Colexio Apóstol Santiago",
+    "ciudad": "Vigo",
+    "enfermeras": "1",
+    "tipo": "Concertado",
+    "direccion": "Rúa de Sanjurjo Badía, 79, Teis, 36207 Vigo, Pontevedra",
+    "coords": [
+      42.24482885318555,
+      -8.703886015507305
+    ]
+  }
+];
 function crearMarcador(c) {
   const marker = L.circleMarker(c.coords, {
     radius: 8,
