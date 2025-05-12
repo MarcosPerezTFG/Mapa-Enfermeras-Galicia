@@ -78,19 +78,21 @@ button:hover {
 @media (max-width: 768px) {
   body {
     flex-direction: column;
+    height: 100vh;
   }
 
   #sidebar {
     width: 100%;
-    max-height: 35vh;
-    overflow: hidden;
+    height: 35vh;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
   }
 
   #lista {
-    max-height: 18vh;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
   }
 
   #map {
@@ -103,6 +105,7 @@ button:hover {
     box-sizing: border-box;
   }
 }
+
 
 
 </style>
