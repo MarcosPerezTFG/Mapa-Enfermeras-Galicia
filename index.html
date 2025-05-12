@@ -71,7 +71,7 @@ button:hover {
   flex: 1;
   height: 100vh;
 }
-  @media (max-width: 768px) {
+ @media (max-width: 768px) {
   body {
     flex-direction: column;
   }
@@ -79,16 +79,21 @@ button:hover {
   #sidebar {
     width: 100%;
     height: auto;
+    max-height: none;
     box-shadow: none;
     border-right: none;
     border-bottom: 1px solid #ccc;
+    overflow: visible;
+  }
+
+  #lista {
+    max-height: 200px; /* Ajusta si quieres más/menos espacio para la lista */
     overflow-y: auto;
-    max-height: 50vh;
   }
 
   #map {
     flex: none;
-    height: 50vh;
+    height: calc(100vh - 250px); /* Ajusta si el sidebar es más alto */
   }
 }
 
