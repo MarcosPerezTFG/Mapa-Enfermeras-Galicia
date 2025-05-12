@@ -71,6 +71,27 @@ button:hover {
   flex: 1;
   height: 100vh;
 }
+  @media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    overflow-y: auto;
+    max-height: 50vh;
+  }
+
+  #map {
+    flex: none;
+    height: 50vh;
+  }
+}
+
 </style>
 
 
