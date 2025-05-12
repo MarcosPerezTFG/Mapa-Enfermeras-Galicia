@@ -293,29 +293,6 @@ function crearMarcador(c) {
   return marker;
 }
 
-// Botón de geolocalización
-const locateControl = L.control({ position: 'topleft' });
-locateControl.onAdd = function (map) {
-  const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-  div.innerHTML = '<a href="#" title="Mi ubicación">📍</a>';
-  div.style.backgroundColor = 'white';
-  div.style.width = '34px';
-  div.style.height = '34px';
-  div.style.lineHeight = '34px';
-  div.style.textAlign = 'center';
-  div.style.fontSize = '20px';
-  div.onclick = function() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        map.setView([position.coords.latitude, position.coords.longitude], 14);
-      });
-    } else {
-      alert("Geolocalización no soportada");
-    }
-  };
-  return div;
-};
-locateControl.addTo(map);
 </script>
 
 </body>
